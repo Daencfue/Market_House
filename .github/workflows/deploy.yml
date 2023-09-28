@@ -1,3 +1,7 @@
+name: Limpiar la cache de GitHub Actions
+run: |
+  npm cache clean --force
+
 name: Despliegue de app web CI/CD Market House
 
 on:
