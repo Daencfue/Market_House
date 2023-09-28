@@ -1,0 +1,31 @@
+name: Despliegue de app web CI/CD Market House
+
+on:
+  push:
+    branches:
+      - main # Cambia 'main' por el nombre de tu rama principal
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código fuente
+        uses: actions/checkout@v2
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14' # Cambia a la versión de Node.js que necesites
+
+      - name: Instalar dependencias
+        run: npm install # Cambia esto si utilizas otro sistema de gestión de paquetes
+
+      - name: Construir el sitio web
+        run: npm run build # Cambia esto para ejecutar tu comando de construcción
+
+      - name: Desplegar en GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./PRUEBA_MAPA # Cambia a la carpeta de tu sitio web generado
